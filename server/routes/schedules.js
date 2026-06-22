@@ -4,6 +4,14 @@ const { run, get, all } = require('../db');
 
 const router = express.Router();
 
+async function getWaitlistCount(scheduleId) {
+  const result = await get(`
+    SELECT COUNT(*) as count FROM waitlist
+    WHERE schedule_id = ? AND status = 1
+  `, [scheduleId]);
+  return result ? result.count : 0;
+}
+
 router.get('/', async (req, res) => {
   const { date, route_id, factory_id } = req.query;
   let sql = `
@@ -31,11 +39,13 @@ router.get('/', async (req, res) => {
   }
   sql += ' ORDER BY s.schedule_date, s.departure_time';
   const schedules = await all(sql, params);
-  const schedulesWithRemaining = schedules.map(s => ({
-    ...s,
-    remaining_seats: s.capacity - s.booked_count
-  }));
-  res.json({ code: 0, data: schedulesWithRemaining });
+  
+  for (const s of schedules) {
+    s.remaining_seats = s.capacity - s.booked_count;
+    s.waitlist_count = await getWaitlistCount(s.id);
+  }
+  
+  res.json({ code: 0, data: schedules });
 });
 
 router.get('/:id', async (req, res) => {
@@ -52,9 +62,11 @@ router.get('/:id', async (req, res) => {
   if (!schedule) {
     return res.json({ code: 404, message: '班次不存在' });
   }
+  const waitlistCount = await getWaitlistCount(req.params.id);
   const scheduleWithRemaining = {
     ...schedule,
-    remaining_seats: schedule.capacity - schedule.booked_count
+    remaining_seats: schedule.capacity - schedule.booked_count,
+    waitlist_count: waitlistCount
   };
   res.json({ code: 0, data: scheduleWithRemaining });
 });

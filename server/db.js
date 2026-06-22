@@ -16,6 +16,7 @@ let db = {
   schedules: [],
   employees: [],
   reservations: [],
+  waitlist: [],
   daily_ledgers: [],
   capacity_alerts: [],
   system_configs: [],
@@ -26,6 +27,7 @@ let db = {
     schedules: 0,
     employees: 0,
     reservations: 0,
+    waitlist: 0,
     daily_ledgers: 0,
     capacity_alerts: 0,
     system_configs: 0
@@ -731,6 +733,7 @@ function checkUnique(table, columns, params) {
     schedules: ['route_id', 'schedule_date', 'departure_time'],
     employees: ['employee_no'],
     reservations: null,
+    waitlist: null,
     daily_ledgers: ['ledger_date', 'schedule_id'],
     capacity_alerts: null,
     system_configs: ['config_key']
