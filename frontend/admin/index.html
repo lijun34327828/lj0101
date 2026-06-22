@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>行政端 - 企业班车管理系统</title>
+  <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background: #f0f2f5; }
+    #app { height: 100%; }
+    .layout { display: flex; height: 100vh; }
+    .sidebar { width: 220px; background: #001529; color: #fff; display: flex; flex-direction: column; }
+    .sidebar-header { padding: 20px; text-align: center; border-bottom: 1px solid #1f3a57; }
+    .sidebar-header h2 { font-size: 18px; color: #fff; }
+    .sidebar-header p { font-size: 12px; color: #8fa3b8; margin-top: 4px; }
+    .sidebar-menu { flex: 1; padding: 10px 0; }
+    .menu-item { padding: 12px 24px; cursor: pointer; color: #8fa3b8; transition: all 0.2s; display: flex; align-items: center; gap: 10px; font-size: 14px; }
+    .menu-item:hover { color: #fff; background: #1f3a57; }
+    .menu-item.active { color: #fff; background: #1890ff; }
+    .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+    .topbar { height: 56px; background: #fff; border-bottom: 1px solid #e8e8e8; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; }
+    .topbar-title { font-size: 18px; font-weight: 600; color: #333; }
+    .content { flex: 1; padding: 20px; overflow-y: auto; }
+    .card { background: #fff; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .card-title { font-size: 16px; font-weight: 600; color: #333; margin-bottom: 16px; }
+    .stat-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 20px; }
+    .stat-card { background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .stat-card .label { font-size: 13px; color: #666; margin-bottom: 8px; }
+    .stat-card .value { font-size: 28px; font-weight: 600; color: #333; }
+    .stat-card .value.blue { color: #1890ff; }
+    .stat-card .value.green { color: #52c41a; }
+    .stat-card .value.orange { color: #fa8c16; }
+    .stat-card .value.red { color: #f5222d; }
+    .filter-bar { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
+    .table-actions { display: flex; gap: 8px; }
+    .alert-item { padding: 12px; border: 1px solid #ffccc7; background: #fff2f0; border-radius: 6px; margin-bottom: 10px; }
+    .alert-item.handled { border-color: #d9d9d9; background: #fafafa; }
+    .alert-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .alert-title { font-weight: 600; color: #cf1322; }
+    .alert-item.handled .alert-title { color: #8c8c8c; }
+    .alert-desc { font-size: 13px; color: #666; }
+    .simulate-section { background: #f9f0ff; border: 1px solid #d3adf7; border-radius: 8px; padding: 16px; margin-top: 20px; }
+    .simulate-title { font-weight: 600; color: #531dab; margin-bottom: 12px; }
+    .simulate-row { display: flex; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="layout">
+      <div class="sidebar">
+        <div class="sidebar-header">
+          <h2>🚌 班车管理系统</h2>
+          <p>行政后台</p>
+        </div>
+        <div class="sidebar-menu">
+          <div class="menu-item" :class="{active: activeMenu === 'dashboard'}" @click="activeMenu = 'dashboard'">
+            <span>📊</span> 数据概览
+          </div>
+          <div class="menu-item" :class="{active: activeMenu === 'schedules'}" @click="activeMenu = 'schedules'">
+            <span>📅</span> 班次管理
+          </div>
+          <div class="menu-item" :class="{active: activeMenu === 'routes'}" @click="activeMenu = 'routes'">
+            <span>🛣️</span> 线路管理
+          </div>
+          <div class="menu-item" :class="{active: activeMenu === 'checkin'}" @click="activeMenu = 'checkin'">
+            <span>✅</span> 乘车核销
+          </div>
+          <div class="menu-item" :class="{active: activeMenu === 'ledgers'}" @click="activeMenu = 'ledgers'">
+            <span>📋</span> 台账管理
+          </div>
+          <div class="menu-item" :class="{active: activeMenu === 'alerts'}" @click="activeMenu = 'alerts'">
+            <span>⚠️</span> 运力告警
+          </div>
+          <div class="menu-item" :class="{active: activeMenu === 'simulate'}" @click="activeMenu = 'simulate'">
+            <span>🧪</span> 模拟测试
+          </div>
+        </div>
+      </div>
+
+      <div class="main">
+        <div class="topbar">
+          <div class="topbar-title">{{ currentPageTitle }}</div>
+          <div style="color: #666; font-size: 13px;">
+            管理员 | {{ todayStr }}
+          </div>
+        </div>
+
+        <div class="content">
+          <div v-if="activeMenu === 'dashboard'">
+            <div class="stat-cards">
+              <div class="stat-card">
+                <div class="label">今日班次</div>
+                <div class="value blue">{{ dashboardStats.summary.total_schedules || 0 }}</div>
+              </div>
+              <div class="stat-card">
+                <div class="label">总载客量</div>
+                <div class="value green">{{ dashboardStats.summary.total_capacity || 0 }}</div>
+              </div>
+              <div class="stat-card">
+                <div class="label">预约人数</div>
+                <div class="value orange">{{ dashboardStats.summary.total_reservations || 0 }}</div>
+              </div>
+              <div class="stat-card">
+                <div class="label">平均上座率</div>
+                <div class="value red">{{ (dashboardStats.summary.avg_occupancy_rate || 0).toFixed(1) }}%</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-title">各厂区今日数据</div>
+              <el-table :data="dashboardStats.by_factory || []" border stripe>
+                <el-table-column prop="factory_name" label="厂区" width="150"></el-table-column>
+                <el-table-column prop="schedule_count" label="班次数量" width="100"></el-table-column>
+                <el-table-column prop="total_capacity" label="总载客量" width="100"></el-table-column>
+                <el-table-column prop="total_reservations" label="预约人数" width="100"></el-table-column>
+                <el-table-column label="平均上座率">
+                  <template #default="scope">
+                    <el-tag :type="scope.row.avg_occupancy_rate < 60 ? 'danger' : (scope.row.avg_occupancy_rate < 80 ? 'warning' : 'success')">
+                      {{ (scope.row.avg_occupancy_rate || 0).toFixed(1) }}%
+                    </el-tag>
+                  </template>
+                </el-table-column>
+              </el-table>
+            </div>
+          </div>
+
+          <div v-if="activeMenu === 'schedules'">
+            <div class="card">
+              <div class="filter-bar">
+                <el-date-picker v-model="scheduleFilter.date" type="date" placeholder="选择日期" value-format="YYYY-MM-DD"></el-date-picker>
+                <el-select v-model="scheduleFilter.route_id" placeholder="选择线路" clearable style="width: 150px;">
+                  <el-option v-for="r in routes" :key="r.id" :label="r.name" :value="r.id"></el-option>
+                </el-select>
+                <el-button type="primary" @click="fetchSchedules">查询</el-button>
+                <el-button @click="showScheduleDialog = true">新增班次</el-button>
+                <el-button type="success" @click="showBatchDialog = true">批量生成</el-button>
+              </div>
+              <el-table :data="schedules" border stripe>
+                <el-table-column prop="schedule_date" label="日期" width="120"></el-table-column>
+                <el-table-column prop="route_name" label="线路" width="120"></el-table-column>
+                <el-table-column prop="factory_name" label="厂区" width="100"></el-table-column>
+                <el-table-column prop="departure_time" label="发车时间" width="100"></el-table-column>
+                <el-table-column prop="plate_number" label="车牌" width="120"></el-table-column>
+                <el-table-column prop="capacity" label="核定载客" width="90"></el-table-column>
+                <el-table-column prop="booked_count" label="已预约" width="80"></el-table-column>
+                <el-table-column label="剩余座位">
+                  <template #default="scope">
+                    <span :style="{color: scope.row.remaining_seats <= 0 ? '#f5222d' : (scope.row.remaining_seats <= 5 ? '#fa8c16' : '#52c41a'), fontWeight: 'bold'}">
+                      {{ scope.row.remaining_seats }}
+                    </span>
+                  </template>
+                </el-table-column>
+                <el-table-column label="状态" width="80">
+                  <template #default="scope">
+                    <el-tag :type="scope.row.status === 1 ? 'success' : 'info'" size="small">
+                      {{ scope.row.status === 1 ? '正常' : '停用' }}
+                    </el-tag>
+                  </template>
+                </el-table-column>
+                <el-table-column label="操作" width="200">
+                  <template #default="scope">
+                    <el-button size="small" type="primary" link @click="viewPassengers(scope.row)">乘车名单</el-button>
+                    <el-button size="small" link @click="editSchedule(scope.row)">编辑</el-button>
+                  </template>
+                </el-table-column>
+              </el-table>
+            </div>
+          </div>
+
+          <div v-if="activeMenu === 'routes'">
+            <div class="card">
+              <div class="filter-bar">
+                <el-select v-model="routeFilter.factory_id" placeholder="选择厂区" clearable style="width: 150px;">
+                  <el-option v-for="f in factories" :key="f.id" :label="f.name" :value="f.id"></el-option>
+                </el-select>
+                <el-button type="primary" @click="fetchRoutes">查询</el-button>
+                <el-button @click="showRouteDialog = true">新增线路</el-button>
+              </div>
+              <el-table :data="routes" border stripe>
+                <el-table-column prop="name" label="线路名称" width="140"></el-table-column>
+                <el-table-column prop="factory_name" label="所属厂区" width="120"></el-table-column>
+                <el-table-column prop="start_point" label="起点站"></el-table-column>
+                <el-table-column prop="end_point" label="终点站"></el-table-column>
+                <el-table-column prop="departure_time" label="发车时间" width="100"></el-table-column>
+                <el-table-column prop="return_time" label="返程时间" width="100"></el-table-column>
+                <el-table-column prop="capacity" label="核定载客" width="90"></el-table-column>
+                <el-table-column label="状态" width="80">
+                  <template #default="scope">
+                    <el-tag :type="scope.row.status === 1 ? 'success' : 'info'" size="small">
+                      {{ scope.row.status === 1 ? '启用' : '停用' }}
+                    </el-tag>
+                  </template>
+                </el-table-column>
+                <el-table-column label="操作" width="150">
+                  <template #default="scope">
+                    <el-button size="small" type="primary" link @click="editRoute(scope.row)">编辑</el-button>
+                    <el-button size="small" type="danger" link @click="deleteRoute(scope.row)">删除</el-button>
+                  </template>
+                </el-table-column>
+              </el-table>
+            </div>
+          </div>
+
+          <div v-if="activeMenu === 'checkin'">
+            <div class="card">
+              <div class="filter-bar">
+                <el-select v-model="checkinFilter.schedule_id" placeholder="选择班次" style="width: 250px;" @change="fetchPassengers">
+                  <el-option v-for="s in todaySchedules" :key="s.id" :label="s.schedule_date + ' ' + s.departure_time + ' ' + s.route_name" :value="s.id"></el-option>
+                </el-select>
+                <el-input v-model="checkinKeyword" placeholder="输入工号或姓名搜索" style="width: 200px;" clearable></el-input>
+              </div>
+              <div v-if="checkinFilter.schedule_id" style="margin-bottom: 16px;">
+                <el-statistic title="已核销 / 总预约" :value="checkedInCount" :suffix="'/' + passengers.length"></el-statistic>
+              </div>
+              <el-table :data="filteredPassengers" border stripe>
+                <el-table-column prop="employee_no" label="工号" width="120"></el-table-column>
+                <el-table-column prop="employee_name" label="姓名" width="100"></el-table-column>
+                <el-table-column prop="route_name" label="线路" width="120"></el-table-column>
+                <el-table-column prop="departure_time" label="发车时间" width="100"></el-table-column>
+                <el-table-column prop="created_at" label="预约时间"></el-table-column>
+                <el-table-column label="状态" width="100">
+                  <template #default="scope">
+                    <el-tag v-if="scope.row.status === 0" type="info" size="small">已取消</el-tag>
+                    <el-tag v-else-if="scope.row.checked_in === 1" type="success" size="small">已核销</el-tag>
+                    <el-tag v-else type="warning" size="small">待核销</el-tag>
+                  </template>
+                </el-table-column>
+                <el-table-column label="操作" width="120">
+                  <template #default="scope">
+                    <el-button v-if="scope.row.status === 1 && scope.row.checked_in === 0" size="small" type="success" @click="doCheckin(scope.row)">
+                      核销
+                    </el-button>
+                    <span v-else-if="scope.row.checked_in === 1" style="color: #52c41a;">{{ scope.row.check_in_time }}</span>
+                  </template>
+                </el-table-column>
+              </el-table>
+            </div>
+          </div>
+
+          <div v-if="activeMenu === 'ledgers'">
+            <div class="card">
+              <div class="filter-bar">
+                <el-date-picker v-model="ledgerFilter.date_from" type="date" placeholder="开始日期" value-format="YYYY-MM-DD"></el-date-picker>
+                <span>至</span>
+                <el-date-picker v-model="ledgerFilter.date_to" type="date" placeholder="结束日期" value-format="YYYY-MM-DD"></el-date-picker>
+                <el-select v-model="ledgerFilter.factory_id" placeholder="选择厂区" clearable style="width: 130px;">
+                  <el-option v-for="f in factories" :key="f.id" :label="f.name" :value="f.id"></el-option>
+                </el-select>
+                <el-select v-model="ledgerFilter.route_id" placeholder="选择线路" clearable style="width: 130px;">
+                  <el-option v-for="r in routes" :key="r.id" :label="r.name" :value="r.id"></el-option>
+                </el-select>
+                <el-button type="primary" @click="fetchLedgers">查询</el-button>
+                <el-button type="success" @click="generateLedger">生成台账</el-button>
+                <el-button type="warning" @click="exportLedgers">导出CSV</el-button>
+              </div>
+              <el-table :data="ledgers" border stripe height="500">
+                <el-table-column prop="ledger_date" label="日期" width="120" fixed="left"></el-table-column>
+                <el-table-column prop="factory_name" label="厂区" width="100"></el-table-column>
+                <el-table-column prop="route_name" label="线路" width="120"></el-table-column>
+                <el-table-column prop="capacity" label="核定载客" width="90"></el-table-column>
+                <el-table-column prop="reservation_count" label="预约人数" width="90"></el-table-column>
+                <el-table-column prop="check_in_count" label="核销人数" width="90"></el-table-column>
+                <el-table-column label="上座率" width="100">
+                  <template #default="scope">
+                    <el-progress :percentage="scope.row.occupancy_rate" :status="scope.row.occupancy_rate < 60 ? 'exception' : 'success'"></el-progress>
+                  </template>
+                </el-table-column>
+              </el-table>
+            </div>
+          </div>
+
+          <div v-if="activeMenu === 'alerts'">
+            <div class="card">
+              <div class="filter-bar">
+                <el-radio-group v-model="alertFilter.status" @change="fetchAlerts">
+                  <el-radio-button :label="-1">全部</el-radio-button>
+                  <el-radio-button :label="0">待处理</el-radio-button>
+                  <el-radio-button :label="1">已处理</el-radio-button>
+                </el-radio-group>
+                <el-button type="primary" @click="checkAlerts">检测告警</el-button>
+              </div>
+              <div v-if="alerts.length === 0" style="text-align: center; color: #999; padding: 40px;">
+                暂无告警记录
+              </div>
+              <div v-for="alert in alerts" :key="alert.id" class="alert-item" :class="{handled: alert.status === 1}">
+                <div class="alert-header">
+                  <span class="alert-title">⚠️ {{ alert.route_name }} - 低上座率告警</span>
+                  <div>
+                    <el-tag size="small" :type="alert.status === 1 ? 'info' : 'danger'">
+                      {{ alert.status === 1 ? '已处理' : '待处理' }}
+                    </el-tag>
+                  </div>
+                </div>
+                <div class="alert-desc">
+                  <p>厂区: {{ alert.factory_name || '-' }}</p>
+                  <p>统计周期: {{ alert.period_start }} ~ {{ alert.period_end }}</p>
+                  <p>平均上座率: <span style="color: #f5222d; font-weight: bold;">{{ alert.avg_occupancy_rate.toFixed(1) }}%</span>
+                    （阈值: {{ alert.threshold }}%）
+                  </p>
+                  <p style="color: #999; font-size: 12px;">告警时间: {{ alert.created_at }}</p>
+                </div>
+                <div style="margin-top: 10px;">
+                  <el-button v-if="alert.status === 0" size="small" type="primary" @click="handleAlert(alert.id)">标记已处理</el-button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div v-if="activeMenu === 'simulate'">
+            <div class="card">
+              <div class="card-title">🧪 业务场景模拟</div>
+              <p style="color: #666; margin-bottom: 16px;">通过模拟场景核验运力拦截逻辑是否正常工作</p>
+
+              <div class="simulate-section">
+                <div class="simulate-title">场景一：满员预约锁定</div>
+                <p style="font-size: 13px; color: #666; margin-bottom: 10px;">
+                  功能：当班次预约人数达到满载时，自动锁定预约通道，新的预约请求将被拒绝。
+                </p>
+                <div class="simulate-row">
+                  <el-select v-model="simulateScheduleId" placeholder="选择班次" style="width: 250px;">
+                    <el-option v-for="s in futureSchedules" :key="s.id" :label="s.schedule_date + ' ' + s.departure_time + ' ' + s.route_name + ' (剩' + s.remaining_seats + '座)'" :value="s.id"></el-option>
+                  </el-select>
+                  <el-button type="primary" @click="simulateFullCapacity" :disabled="!simulateScheduleId">模拟满员</el-button>
+                </div>
+              </div>
+
+              <div class="simulate-section">
+                <div class="simulate-title">场景二：临近发车取消限制</div>
+                <p style="font-size: 13px; color: #666; margin-bottom: 10px;">
+                  功能：发车前30分钟内关闭撤销入口，员工无法取消预约。
+                </p>
+                <div class="simulate-row">
+                  <el-select v-model="simulateScheduleId2" placeholder="选择班次" style="width: 250px;">
+                    <el-option v-for="s in futureSchedules" :key="s.id" :label="s.schedule_date + ' ' + s.departure_time + ' ' + s.route_name" :value="s.id"></el-option>
+                  </el-select>
+                  <el-input-number v-model="simulateMinutes" :min="1" :max="120" label="发车前分钟数" style="width: 150px;"></el-input-number>
+                  <el-button type="primary" @click="simulateNearDepartureCancel">模拟检测</el-button>
+                </div>
+                <div v-if="cancelTestResult" style="margin-top: 10px; padding: 10px; background: #fff; border-radius: 4px;">
+                  <p>距离发车: <strong>{{ cancelTestResult.minutes_before_departure }} 分钟</strong></p>
+                  <p>取消时限: 发车前 {{ cancelTestResult.cancel_limit_minutes }} 分钟</p>
+                  <p>是否可取消: 
+                    <el-tag :type="cancelTestResult.can_cancel ? 'success' : 'danger'">
+                      {{ cancelTestResult.can_cancel ? '可以取消' : '不可取消' }}
+                    </el-tag>
+                  </p>
+                </div>
+              </div>
+
+              <div class="simulate-section">
+                <div class="simulate-title">场景三：生成历史台账数据</div>
+                <p style="font-size: 13px; color: #666; margin-bottom: 10px;">
+                  功能：生成随机历史上座率数据，用于测试运力告警检测。
+                </p>
+                <div class="simulate-row">
+                  <el-input-number v-model="simulateDays" :min="1" :max="90" label="生成天数" style="width: 150px;"></el-input-number>
+                  <el-button type="primary" @click="simulateHistoryLedgers">生成历史数据</el-button>
+                </div>
+              </div>
+
+              <div class="simulate-section" style="background: #fff1f0; border-color: #ffa39e;">
+                <div class="simulate-title" style="color: #cf1322;">数据清理</div>
+                <p style="font-size: 13px; color: #666; margin-bottom: 10px;">
+                  清除所有模拟生成的测试数据（SIM开头的预约记录）
+                </p>
+                <div class="simulate-row">
+                  <el-button type="danger" @click="resetTestData">清除模拟数据</el-button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <el-dialog v-model="showScheduleDialog" title="新增班次" width="500px">
+      <el-form :model="scheduleForm" label-width="100px">
+        <el-form-item label="线路">
+          <el-select v-model="scheduleForm.route_id" style="width: 100%;">
+            <el-option v-for="r in routes" :key="r.id" :label="r.name" :value="r.id"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="车辆">
+          <el-select v-model="scheduleForm.vehicle_id" style="width: 100%;" clearable>
+            <el-option v-for="v in vehicles" :key="v.id" :label="v.plate_number + ' (' + v.capacity + '座)'" :value="v.id"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="日期">
+          <el-date-picker v-model="scheduleForm.schedule_date" type="date" value-format="YYYY-MM-DD" style="width: 100%;"></el-date-picker>
+        </el-form-item>
+        <el-form-item label="发车时间">
+          <el-time-picker v-model="scheduleForm.departure_time" format="HH:mm" value-format="HH:mm" style="width: 100%;"></el-time-picker>
+        </el-form-item>
+        <el-form-item label="载客量">
+          <el-input-number v-model="scheduleForm.capacity" :min="1" :max="100" style="width: 100%;"></el-input-number>
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <el-button @click="showScheduleDialog = false">取消</el-button>
+        <el-button type="primary" @click="addSchedule">确定</el-button>
+      </template>
+    </el-dialog>
+
+    <el-dialog v-model="showBatchDialog" title="批量生成班次" width="500px">
+      <el-form :model="batchForm" label-width="100px">
+        <el-form-item label="线路">
+          <el-select v-model="batchForm.route_id" style="width: 100%;">
+            <el-option v-for="r in routes" :key="r.id" :label="r.name" :value="r.id"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="开始日期">
+          <el-date-picker v-model="batchForm.start_date" type="date" value-format="YYYY-MM-DD" style="width: 100%;"></el-date-picker>
+        </el-form-item>
+        <el-form-item label="结束日期">
+          <el-date-picker v-model="batchForm.end_date" type="date" value-format="YYYY-MM-DD" style="width: 100%;"></el-date-picker>
+        </el-form-item>
+        <el-form-item label="车辆">
+          <el-select v-model="batchForm.vehicle_id" style="width: 100%;" clearable>
+            <el-option v-for="v in vehicles" :key="v.id" :label="v.plate_number + ' (' + v.capacity + '座)'" :value="v.id"></el-option>
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <el-button @click="showBatchDialog = false">取消</el-button>
+        <el-button type="primary" @click="batchGenerate">生成</el-button>
+      </template>
+    </el-dialog>
+
+    <el-dialog v-model="passengerDialogVisible" title="乘车名单" width="600px">
+      <el-table :data="passengerList" border stripe>
+        <el-table-column prop="employee_no" label="工号" width="120"></el-table-column>
+        <el-table-column prop="employee_name" label="姓名" width="100"></el-table-column>
+        <el-table-column prop="created_at" label="预约时间"></el-table-column>
+        <el-table-column label="状态" width="80">
+          <template #default="scope">
+            <el-tag v-if="scope.row.status === 1" type="success" size="small">有效</el-tag>
+            <el-tag v-else type="info" size="small">已取消</el-tag>
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-dialog>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://unpkg.com/element-plus"></script>
+  <script src="https://unpkg.com/dayjs@1/dayjs.min.js"></script>
+  <script>
+    const { createApp, ref, reactive, computed, onMounted, watch } = Vue;
+    const API_BASE = 'http://localhost:8911/api';
+
+    const app = createApp({
+      setup() {
+        const activeMenu = ref('dashboard');
+        const todayStr = dayjs().format('YYYY年MM月DD日');
+
+        const currentPageTitle = computed(() => {
+          const titles = {
+            dashboard: '数据概览',
+            schedules: '班次管理',
+            routes: '线路管理',
+            checkin: '乘车核销',
+            ledgers: '台账管理',
+            alerts: '运力告警',
+            simulate: '模拟测试'
+          };
+          return titles[activeMenu.value] || '';
+        });
+
+        const routes = ref([]);
+        const factories = ref([]);
+        const vehicles = ref([]);
+        const schedules = ref([]);
+        const ledgers = ref([]);
+        const alerts = ref([]);
+        const passengers = ref([]);
+        const passengerList = ref([]);
+        const passengerDialogVisible = ref(false);
+
+        const scheduleFilter = reactive({ date: dayjs().format('YYYY-MM-DD'), route_id: null });
+        const routeFilter = reactive({ factory_id: null });
+        const ledgerFilter = reactive({ date_from: dayjs().subtract(7, 'day').format('YYYY-MM-DD'), date_to: dayjs().format('YYYY-MM-DD'), factory_id: null, route_id: null });
+        const alertFilter = reactive({ status: -1 });
+        const checkinFilter = reactive({ schedule_id: null });
+        const checkinKeyword = ref('');
+
+        const showScheduleDialog = ref(false);
+        const showBatchDialog = ref(false);
+        const showRouteDialog = ref(false);
+
+        const scheduleForm = reactive({ route_id: null, vehicle_id: null, schedule_date: dayjs().format('YYYY-MM-DD'), departure_time: '08:00', capacity: 45 });
+        const batchForm = reactive({ route_id: null, start_date: dayjs().format('YYYY-MM-DD'), end_date: dayjs().add(7, 'day').format('YYYY-MM-DD'), vehicle_id: null });
+
+        const dashboardStats = reactive({ summary: {}, by_factory: [] });
+
+        const todaySchedules = ref([]);
+        const futureSchedules = ref([]);
+
+        const simulateScheduleId = ref(null);
+        const simulateScheduleId2 = ref(null);
+        const simulateMinutes = ref(20);
+        const simulateDays = ref(30);
+        const cancelTestResult = ref(null);
+
+        const checkedInCount = computed(() => {
+          return passengers.value.filter(p => p.checked_in === 1 && p.status === 1).length;
+        });
+
+        const filteredPassengers = computed(() => {
+          if (!checkinKeyword.value) return passengers.value;
+          const kw = checkinKeyword.value.toLowerCase();
+          return passengers.value.filter(p =>
+            p.employee_no.toLowerCase().includes(kw) ||
+            p.employee_name.toLowerCase().includes(kw)
+          );
+        });
+
+        const fetchRoutes = async () => {
+          try {
+            let url = `${API_BASE}/routes`;
+            if (routeFilter.factory_id) url += `?factory_id=${routeFilter.factory_id}`;
+            const res = await fetch(url);
+            const data = await res.json();
+            if (data.code === 0) routes.value = data.data;
+          } catch (e) { console.error(e); }
+        };
+
+        const fetchFactories = async () => {
+          try {
+            const res = await fetch(`${API_BASE}/routes/factories/list`);
+            const data = await res.json();
+            if (data.code === 0) factories.value = data.data;
+          } catch (e) { console.error(e); }
+        };
+
+        const fetchVehicles = async () => {
+          try {
+            const res = await fetch(`${API_BASE}/routes/vehicles/list`);
+            const data = await res.json();
+            if (data.code === 0) vehicles.value = data.data;
+          } catch (e) { console.error(e); }
+        };
+
+        const fetchSchedules = async () => {
+          try {
+            let url = `${API_BASE}/schedules?date=${scheduleFilter.date}`;
+            if (scheduleFilter.route_id) url += `&route_id=${scheduleFilter.route_id}`;
+            const res = await fetch(url);
+            const data = await res.json();
+            if (data.code === 0) schedules.value = data.data;
+          } catch (e) { console.error(e); }
+        };
+
+        const fetchTodaySchedules = async () => {
+          try {
+            const res = await fetch(`${API_BASE}/schedules?date=${dayjs().format('YYYY-MM-DD')}`);
+            const data = await res.json();
+            if (data.code === 0) todaySchedules.value = data.data;
+          } catch (e) { console.error(e); }
+        };
+
+        const fetchFutureSchedules = async () => {
+          try {
+            const res = await fetch(`${API_BASE}/schedules?date=${dayjs().add(1, 'day').format('YYYY-MM-DD')}`);
+            const data = await res.json();
+            if (data.code === 0) futureSchedules.value = data.data.filter(s => s.remaining_seats > 0);
+          } catch (e) { console.error(e); }
+        };
+
+        const fetchLedgers = async () => {
+          try {
+            let url = `${API_BASE}/admin/ledgers?date_from=${ledgerFilter.date_from}&date_to=${ledgerFilter.date_to}`;
+            if (ledgerFilter.factory_id) url += `&factory_id=${ledgerFilter.factory_id}`;
+            if (ledgerFilter.route_id) url += `&route_id=${ledgerFilter.route_id}`;
+            const res = await fetch(url);
+            const data = await res.json();
+            if (data.code === 0) ledgers.value = data.data;
+          } catch (e) { console.error(e); }
+        };
+
+        const fetchAlerts = async () => {
+          try {
+            let url = `${API_BASE}/admin/alerts`;
+            if (alertFilter.status >= 0) url += `?status=${alertFilter.status}`;
+            const res = await fetch(url);
+            const data = await res.json();
+            if (data.code === 0) alerts.value = data.data;
+          } catch (e) { console.error(e); }
+        };
+
+        const fetchDashboard = async () => {
+          try {
+            const res = await fetch(`${API_BASE}/admin/statistics/summary?date=${dayjs().format('YYYY-MM-DD')}`);
+            const data = await res.json();
+            if (data.code === 0) {
+              dashboardStats.summary = data.data.summary || {};
+              dashboardStats.by_factory = data.data.by_factory || [];
+            }
+          } catch (e) { console.error(e); }
+        };
+
+        const fetchPassengers = async () => {
+          if (!checkinFilter.schedule_id) {
+            passengers.value = [];
+            return;
+          }
+          try {
+            const res = await fetch(`${API_BASE}/reservations/schedule/${checkinFilter.schedule_id}/passengers`);
+            const data = await res.json();
+            if (data.code === 0) passengers.value = data.data;
+          } catch (e) { console.error(e); }
+        };
+
+        const viewPassengers = (schedule) => {
+          checkinFilter.schedule_id = schedule.id;
+          fetch(`${API_BASE}/reservations/schedule/${schedule.id}/passengers`)
+            .then(r => r.json())
+            .then(data => {
+              if (data.code === 0) {
+                passengerList.value = data.data;
+                passengerDialogVisible.value = true;
+              }
+            });
+        };
+
+        const doCheckin = async (reservation) => {
+          try {
+            const res = await fetch(`${API_BASE}/reservations/checkin/${reservation.id}`, { method: 'POST' });
+            const data = await res.json();
+            if (data.code === 0) {
+              ElementPlus.ElMessage.success('核销成功');
+              fetchPassengers();
+            } else {
+              ElementPlus.ElMessage.error(data.message);
+            }
+          } catch (e) {
+            ElementPlus.ElMessage.error('网络错误');
+          }
+        };
+
+        const addSchedule = async () => {
+          try {
+            const res = await fetch(`${API_BASE}/schedules`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(scheduleForm)
+            });
+            const data = await res.json();
+            if (data.code === 0) {
+              ElementPlus.ElMessage.success('添加成功');
+              showScheduleDialog.value = false;
+              fetchSchedules();
+              fetchTodaySchedules();
+            } else {
+              ElementPlus.ElMessage.error(data.message);
+            }
+          } catch (e) {
+            ElementPlus.ElMessage.error('网络错误');
+          }
+        };
+
+        const batchGenerate = async () => {
+          try {
+            const res = await fetch(`${API_BASE}/schedules/batch/generate`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(batchForm)
+            });
+            const data = await res.json();
+            if (data.code === 0) {
+              ElementPlus.ElMessage.success(data.message);
+              showBatchDialog.value = false;
+              fetchSchedules();
+            } else {
+              ElementPlus.ElMessage.error(data.message);
+            }
+          } catch (e) {
+            ElementPlus.ElMessage.error('网络错误');
+          }
+        };
+
+        const generateLedger = async () => {
+          try {
+            const res = await fetch(`${API_BASE}/admin/ledgers/generate`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ date: dayjs().format('YYYY-MM-DD') })
+            });
+            const data = await res.json();
+            if (data.code === 0) {
+              ElementPlus.ElMessage.success(data.message);
+              fetchLedgers();
+              fetchDashboard();
+            }
+          } catch (e) {
+            ElementPlus.ElMessage.error('网络错误');
+          }
+        };
+
+        const exportLedgers = () => {
+          let url = `${API_BASE}/admin/ledgers/export?date_from=${ledgerFilter.date_from}&date_to=${ledgerFilter.date_to}`;
+          if (ledgerFilter.factory_id) url += `&factory_id=${ledgerFilter.factory_id}`;
+          if (ledgerFilter.route_id) url += `&route_id=${ledgerFilter.route_id}`;
+          window.open(url, '_blank');
+        };
+
+        const checkAlerts = async () => {
+          try {
+            const res = await fetch(`${API_BASE}/admin/alerts/check`, { method: 'POST' });
+            const data = await res.json();
+            if (data.code === 0) {
+              ElementPlus.ElMessage.success(data.message);
+              fetchAlerts();
+            }
+          } catch (e) {
+            ElementPlus.ElMessage.error('网络错误');
+          }
+        };
+
+        const handleAlert = async (id) => {
+          try {
+            const res = await fetch(`${API_BASE}/admin/alerts/${id}/handle`, { method: 'POST' });
+            const data = await res.json();
+            if (data.code === 0) {
+              ElementPlus.ElMessage.success('已标记为处理');
+              fetchAlerts();
+            }
+          } catch (e) {
+            ElementPlus.ElMessage.error('网络错误');
+          }
+        };
+
+        const editSchedule = (schedule) => {
+          ElementPlus.ElMessage.info('编辑功能可根据需要扩展');
+        };
+
+        const editRoute = (route) => {
+          ElementPlus.ElMessage.info('编辑功能可根据需要扩展');
+        };
+
+        const deleteRoute = (route) => {
+          ElementPlus.ElMessageBox.confirm('确定删除此线路吗？', '提示', {
+            type: 'warning'
+          }).then(async () => {
+            try {
+              const res = await fetch(`${API_BASE}/routes/${route.id}`, { method: 'DELETE' });
+              const data = await res.json();
+              if (data.code === 0) {
+                ElementPlus.ElMessage.success('删除成功');
+                fetchRoutes();
+              } else {
+                ElementPlus.ElMessage.error(data.message);
+              }
+            } catch (e) {
+              ElementPlus.ElMessage.error('网络错误');
+            }
+          }).catch(() => {});
+        };
+
+        const simulateFullCapacity = async () => {
+          if (!simulateScheduleId.value) {
+            ElementPlus.ElMessage.warning('请选择班次');
+            return;
+          }
+          try {
+            const res = await fetch(`${API_BASE}/simulate/full-capacity`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ schedule_id: simulateScheduleId.value })
+            });
+            const data = await res.json();
+            if (data.code === 0) {
+              ElementPlus.ElMessage.success(data.message);
+              fetchSchedules();
+              fetchFutureSchedules();
+            } else {
+              ElementPlus.ElMessage.error(data.message);
+            }
+          } catch (e) {
+            ElementPlus.ElMessage.error('网络错误');
+          }
+        };
+
+        const simulateNearDepartureCancel = async () => {
+          if (!simulateScheduleId2.value) {
+            ElementPlus.ElMessage.warning('请选择班次');
+            return;
+          }
+          try {
+            const res = await fetch(`${API_BASE}/simulate/near-departure-cancel`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ schedule_id: simulateScheduleId2.value, minutes_before: simulateMinutes.value })
+            });
+            const data = await res.json();
+            if (data.code === 0) {
+              cancelTestResult.value = data.data;
+            } else {
+              ElementPlus.ElMessage.error(data.message);
+            }
+          } catch (e) {
+            ElementPlus.ElMessage.error('网络错误');
+          }
+        };
+
+        const simulateHistoryLedgers = async () => {
+          try {
+            const res = await fetch(`${API_BASE}/simulate/generate-history-ledgers`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ days: simulateDays.value })
+            });
+            const data = await res.json();
+            if (data.code === 0) {
+              ElementPlus.ElMessage.success(data.message);
+              fetchLedgers();
+            }
+          } catch (e) {
+            ElementPlus.ElMessage.error('网络错误');
+          }
+        };
+
+        const resetTestData = async () => {
+          ElementPlus.ElMessageBox.confirm('确定清除所有模拟测试数据吗？', '提示', {
+            type: 'warning'
+          }).then(async () => {
+            try {
+              const res = await fetch(`${API_BASE}/simulate/reset-test-data`, { method: 'POST' });
+              const data = await res.json();
+              if (data.code === 0) {
+                ElementPlus.ElMessage.success(data.message);
+                fetchSchedules();
+                fetchFutureSchedules();
+              }
+            } catch (e) {
+              ElementPlus.ElMessage.error('网络错误');
+            }
+          }).catch(() => {});
+        };
+
+        watch(activeMenu, (val) => {
+          if (val === 'dashboard') fetchDashboard();
+          if (val === 'schedules') { fetchSchedules(); fetchTodaySchedules(); }
+          if (val === 'routes') fetchRoutes();
+          if (val === 'checkin') fetchTodaySchedules();
+          if (val === 'ledgers') fetchLedgers();
+          if (val === 'alerts') fetchAlerts();
+          if (val === 'simulate') fetchFutureSchedules();
+        });
+
+        onMounted(() => {
+          fetchFactories();
+          fetchVehicles();
+          fetchRoutes();
+          fetchDashboard();
+          fetchTodaySchedules();
+          fetchAlerts();
+        });
+
+        return {
+          activeMenu, currentPageTitle, todayStr,
+          routes, factories, vehicles, schedules, ledgers, alerts,
+          passengers, passengerList, passengerDialogVisible,
+          scheduleFilter, routeFilter, ledgerFilter, alertFilter,
+          checkinFilter, checkinKeyword, checkedInCount, filteredPassengers,
+          showScheduleDialog, showBatchDialog, showRouteDialog,
+          scheduleForm, batchForm,
+          dashboardStats,
+          todaySchedules, futureSchedules,
+          simulateScheduleId, simulateScheduleId2, simulateMinutes, simulateDays, cancelTestResult,
+          fetchRoutes, fetchSchedules, fetchLedgers, fetchAlerts,
+          fetchPassengers, viewPassengers, doCheckin,
+          addSchedule, batchGenerate,
+          generateLedger, exportLedgers,
+          checkAlerts, handleAlert,
+          editSchedule, editRoute, deleteRoute,
+          simulateFullCapacity, simulateNearDepartureCancel,
+          simulateHistoryLedgers, resetTestData
+        };
+      }
+    });
+
+    app.use(ElementPlus);
+    app.mount('#app');
+  </script>
+</body>
+</html>
