@@ -638,8 +638,38 @@ function findRecords(table, whereClause, params) {
   });
 }
 
+function splitSetClause(setClause) {
+  const parts = [];
+  let depth = 0;
+  let inString = false;
+  let current = '';
+
+  for (let i = 0; i < setClause.length; i++) {
+    const ch = setClause[i];
+    if (ch === "'") {
+      inString = !inString;
+      current += ch;
+    } else if (!inString && ch === '(') {
+      depth++;
+      current += ch;
+    } else if (!inString && ch === ')') {
+      depth--;
+      current += ch;
+    } else if (!inString && depth === 0 && ch === ',') {
+      parts.push(current.trim());
+      current = '';
+    } else {
+      current += ch;
+    }
+  }
+  if (current.trim()) {
+    parts.push(current.trim());
+  }
+  return parts;
+}
+
 function applySet(record, setClause, params) {
-  const sets = setClause.split(',');
+  const sets = splitSetClause(setClause);
   let paramIndex = 0;
 
   sets.forEach(set => {
@@ -665,10 +695,10 @@ function applySet(record, setClause, params) {
             skip = true;
           }
         }
-      } else if (value === `datetime('now', 'localtime')`) {
+      } else if (/^DATETIME\s*\(/i.test(value)) {
         value = nowStr();
       } else {
-        const incMatch = value.match(/(\w+)\s*([+-])\s*(\d+)/i);
+        const incMatch = value.match(/^(\w+)\s*([+-])\s*(\d+)$/i);
         if (incMatch) {
           const srcField = incMatch[1];
           const op = incMatch[2];
@@ -719,4 +749,4 @@ function checkUnique(table, columns, params) {
 
 initDatabase();
 
-module.exports = { db, run, get, all, exec };
+module.exports = { db, run, get, all, exec, splitSetClause };

@@ -4,33 +4,33 @@
       "id": 1,
       "name": "总部厂区",
       "address": "北京市朝阳区科技园区A座",
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 2,
       "name": "开发厂区",
       "address": "北京市海淀区软件园B区",
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 3,
       "name": "生产厂区",
       "address": "北京市亦庄经济开发区C路",
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     }
   ],
   "routes": [
     {
       "id": 1,
-      "name": "总部1号线",
+      "name": "测试线路名",
       "factory_id": 1,
       "start_point": "东直门地铁站",
       "end_point": "总部厂区",
       "departure_time": "07:30",
       "return_time": "18:00",
-      "capacity": 45,
+      "capacity": 100,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 2,
@@ -42,7 +42,7 @@
       "return_time": "18:00",
       "capacity": 45,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 3,
@@ -54,7 +54,7 @@
       "return_time": "18:30",
       "capacity": 35,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 4,
@@ -66,7 +66,7 @@
       "return_time": "18:30",
       "capacity": 35,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 5,
@@ -78,7 +78,7 @@
       "return_time": "17:30",
       "capacity": 50,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 6,
@@ -90,7 +90,7 @@
       "return_time": "17:30",
       "capacity": 40,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     }
   ],
   "vehicles": [
@@ -101,7 +101,7 @@
       "driver_name": "张师傅",
       "driver_phone": "13900001111",
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 2,
@@ -110,7 +110,7 @@
       "driver_name": "李师傅",
       "driver_phone": "13900002222",
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 3,
@@ -119,7 +119,7 @@
       "driver_name": "王师傅",
       "driver_phone": "13900003333",
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 4,
@@ -128,7 +128,7 @@
       "driver_name": "赵师傅",
       "driver_phone": "13900004444",
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     }
   ],
   "schedules": [
@@ -141,7 +141,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 2,
@@ -152,7 +152,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 3,
@@ -163,7 +163,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 4,
@@ -174,7 +174,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 5,
@@ -185,7 +185,7 @@
       "capacity": 50,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 6,
@@ -196,7 +196,7 @@
       "capacity": 40,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 7,
@@ -207,7 +207,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 8,
@@ -218,7 +218,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 9,
@@ -229,7 +229,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 10,
@@ -240,7 +240,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 11,
@@ -251,7 +251,7 @@
       "capacity": 50,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 12,
@@ -262,7 +262,7 @@
       "capacity": 40,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 13,
@@ -273,7 +273,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 14,
@@ -284,7 +284,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 15,
@@ -295,7 +295,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 16,
@@ -306,7 +306,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 17,
@@ -317,7 +317,7 @@
       "capacity": 50,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 18,
@@ -328,7 +328,7 @@
       "capacity": 40,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 19,
@@ -339,7 +339,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 20,
@@ -350,7 +350,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 21,
@@ -361,7 +361,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 22,
@@ -372,7 +372,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 23,
@@ -383,7 +383,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 24,
@@ -394,7 +394,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 25,
@@ -405,7 +405,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 26,
@@ -416,7 +416,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 27,
@@ -427,7 +427,7 @@
       "capacity": 50,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 28,
@@ -438,7 +438,7 @@
       "capacity": 50,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 29,
@@ -449,7 +449,7 @@
       "capacity": 40,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 30,
@@ -460,7 +460,7 @@
       "capacity": 40,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 31,
@@ -471,7 +471,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 32,
@@ -482,7 +482,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 33,
@@ -493,7 +493,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 34,
@@ -504,7 +504,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 35,
@@ -515,7 +515,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 36,
@@ -526,7 +526,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 37,
@@ -537,7 +537,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 38,
@@ -548,7 +548,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 39,
@@ -559,7 +559,7 @@
       "capacity": 50,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 40,
@@ -570,7 +570,7 @@
       "capacity": 50,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 41,
@@ -581,7 +581,7 @@
       "capacity": 40,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 42,
@@ -592,7 +592,7 @@
       "capacity": 40,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 43,
@@ -603,7 +603,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 44,
@@ -614,7 +614,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 45,
@@ -625,7 +625,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 46,
@@ -636,7 +636,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 47,
@@ -647,7 +647,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 48,
@@ -658,7 +658,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 49,
@@ -669,7 +669,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 50,
@@ -680,7 +680,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 51,
@@ -691,7 +691,7 @@
       "capacity": 50,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 52,
@@ -702,7 +702,7 @@
       "capacity": 50,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 53,
@@ -713,7 +713,7 @@
       "capacity": 40,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 54,
@@ -724,7 +724,7 @@
       "capacity": 40,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 55,
@@ -735,7 +735,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 56,
@@ -746,7 +746,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 57,
@@ -757,7 +757,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 58,
@@ -768,7 +768,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 59,
@@ -779,7 +779,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 60,
@@ -790,7 +790,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 61,
@@ -801,7 +801,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 62,
@@ -812,7 +812,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 63,
@@ -823,7 +823,7 @@
       "capacity": 50,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 64,
@@ -834,7 +834,7 @@
       "capacity": 50,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 65,
@@ -845,7 +845,7 @@
       "capacity": 40,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 66,
@@ -856,7 +856,7 @@
       "capacity": 40,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 67,
@@ -867,7 +867,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 68,
@@ -878,7 +878,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 69,
@@ -889,7 +889,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 70,
@@ -900,7 +900,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 71,
@@ -911,7 +911,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 72,
@@ -922,7 +922,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 73,
@@ -933,7 +933,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 74,
@@ -944,7 +944,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 75,
@@ -955,7 +955,7 @@
       "capacity": 50,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 76,
@@ -966,7 +966,7 @@
       "capacity": 50,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 77,
@@ -977,7 +977,7 @@
       "capacity": 40,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 78,
@@ -988,7 +988,7 @@
       "capacity": 40,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 79,
@@ -999,7 +999,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 80,
@@ -1010,7 +1010,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 81,
@@ -1021,7 +1021,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 82,
@@ -1032,7 +1032,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 83,
@@ -1043,7 +1043,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 84,
@@ -1054,7 +1054,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 85,
@@ -1065,7 +1065,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 86,
@@ -1076,7 +1076,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 87,
@@ -1087,7 +1087,7 @@
       "capacity": 50,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 88,
@@ -1098,7 +1098,7 @@
       "capacity": 50,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 89,
@@ -1109,7 +1109,7 @@
       "capacity": 40,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 90,
@@ -1120,7 +1120,7 @@
       "capacity": 40,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 91,
@@ -1131,7 +1131,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 92,
@@ -1142,7 +1142,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 93,
@@ -1153,7 +1153,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 94,
@@ -1164,7 +1164,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 95,
@@ -1175,7 +1175,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 96,
@@ -1186,7 +1186,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 97,
@@ -1197,7 +1197,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 98,
@@ -1208,7 +1208,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 99,
@@ -1219,7 +1219,7 @@
       "capacity": 50,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 100,
@@ -1230,7 +1230,7 @@
       "capacity": 50,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 101,
@@ -1241,7 +1241,7 @@
       "capacity": 40,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 102,
@@ -1252,7 +1252,7 @@
       "capacity": 40,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 103,
@@ -1263,7 +1263,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 104,
@@ -1274,7 +1274,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 105,
@@ -1285,7 +1285,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 106,
@@ -1296,7 +1296,7 @@
       "capacity": 45,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 107,
@@ -1307,7 +1307,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 108,
@@ -1318,7 +1318,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 109,
@@ -1329,7 +1329,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 110,
@@ -1340,7 +1340,7 @@
       "capacity": 35,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 111,
@@ -1349,9 +1349,9 @@
       "schedule_date": "2026-06-29",
       "departure_time": "07:00",
       "capacity": 50,
-      "booked_count": 0,
+      "booked_count": 1,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 112,
@@ -1362,7 +1362,7 @@
       "capacity": 50,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 113,
@@ -1373,7 +1373,7 @@
       "capacity": 40,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 114,
@@ -1384,7 +1384,18 @@
       "capacity": 40,
       "booked_count": 0,
       "status": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
+    },
+    {
+      "id": 115,
+      "route_id": 1,
+      "vehicle_id": 1,
+      "schedule_date": "2026-06-22",
+      "departure_time": "15:44",
+      "capacity": 45,
+      "booked_count": 0,
+      "status": 1,
+      "created_at": "2026-06-22 15:39:15"
     }
   ],
   "employees": [
@@ -1395,7 +1406,7 @@
       "department": "部门1",
       "phone": "13810000001",
       "factory_id": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 2,
@@ -1404,7 +1415,7 @@
       "department": "部门1",
       "phone": "13810000002",
       "factory_id": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 3,
@@ -1413,7 +1424,7 @@
       "department": "部门1",
       "phone": "13810000003",
       "factory_id": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 4,
@@ -1422,7 +1433,7 @@
       "department": "部门1",
       "phone": "13810000004",
       "factory_id": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 5,
@@ -1431,7 +1442,7 @@
       "department": "部门1",
       "phone": "13810000005",
       "factory_id": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 6,
@@ -1440,7 +1451,7 @@
       "department": "部门2",
       "phone": "13810000006",
       "factory_id": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 7,
@@ -1449,7 +1460,7 @@
       "department": "部门2",
       "phone": "13810000007",
       "factory_id": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 8,
@@ -1458,7 +1469,7 @@
       "department": "部门2",
       "phone": "13810000008",
       "factory_id": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 9,
@@ -1467,7 +1478,7 @@
       "department": "部门2",
       "phone": "13810000009",
       "factory_id": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 10,
@@ -1476,7 +1487,7 @@
       "department": "部门2",
       "phone": "13810000010",
       "factory_id": 1,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 11,
@@ -1485,7 +1496,7 @@
       "department": "部门3",
       "phone": "13810000011",
       "factory_id": 2,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 12,
@@ -1494,7 +1505,7 @@
       "department": "部门3",
       "phone": "13810000012",
       "factory_id": 2,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 13,
@@ -1503,7 +1514,7 @@
       "department": "部门3",
       "phone": "13810000013",
       "factory_id": 2,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 14,
@@ -1512,7 +1523,7 @@
       "department": "部门3",
       "phone": "13810000014",
       "factory_id": 2,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 15,
@@ -1521,7 +1532,7 @@
       "department": "部门3",
       "phone": "13810000015",
       "factory_id": 2,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 16,
@@ -1530,7 +1541,7 @@
       "department": "部门4",
       "phone": "13810000016",
       "factory_id": 3,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 17,
@@ -1539,7 +1550,7 @@
       "department": "部门4",
       "phone": "13810000017",
       "factory_id": 3,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 18,
@@ -1548,7 +1559,7 @@
       "department": "部门4",
       "phone": "13810000018",
       "factory_id": 3,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 19,
@@ -1557,7 +1568,7 @@
       "department": "部门4",
       "phone": "13810000019",
       "factory_id": 3,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     },
     {
       "id": 20,
@@ -1566,510 +1577,147 @@
       "department": "部门4",
       "phone": "13810000020",
       "factory_id": 3,
-      "created_at": "2026-06-22 12:38:13"
+      "created_at": "2026-06-22 15:39:15"
     }
   ],
   "reservations": [
     {
       "id": 1,
-      "schedule_id": 39,
+      "schedule_id": 103,
+      "employee_id": 1001,
+      "employee_no": "TEST001",
+      "employee_name": "测试员工",
+      "route_name": "测试线路",
+      "schedule_date": "2026-06-29",
+      "departure_time": "07:30",
+      "start_point": "起点",
+      "end_point": "终点",
+      "status": 0,
+      "created_at": "2026-06-22 15:39:15",
+      "cancel_time": "2026-06-22 15:39:15"
+    },
+    {
+      "id": 2,
+      "schedule_id": 115,
+      "employee_id": 1002,
+      "employee_no": "TEST002",
+      "employee_name": "测试员工2",
+      "route_name": "测试线路",
+      "schedule_date": "2026-06-22",
+      "departure_time": "15:44",
+      "start_point": "起点",
+      "end_point": "终点",
+      "status": 1,
+      "created_at": "2026-06-22 15:39:15"
+    },
+    {
+      "id": 3,
+      "schedule_id": 111,
       "employee_id": 20,
       "employee_no": "EMP0020",
       "employee_name": "员工20",
       "route_name": "生产1号线",
-      "schedule_date": "2026-06-23",
+      "schedule_date": "2026-06-29",
       "departure_time": "07:00",
       "start_point": "宋家庄地铁站",
       "end_point": "生产厂区",
       "status": 0,
-      "created_at": "2026-06-22 12:42:44",
-      "cancel_time": "2026-06-22 12:42:49"
-    }
-  ],
-  "daily_ledgers": [
-    {
-      "id": 1,
-      "ledger_date": "2026-06-22",
-      "route_id": 1,
-      "route_name": "总部1号线",
-      "factory_id": 1,
-      "factory_name": "总部厂区",
-      "schedule_id": 19,
-      "vehicle_id": 1,
-      "capacity": 45,
-      "reservation_count": 0,
-      "check_in_count": 0,
-      "occupancy_rate": 0,
-      "created_at": "2026-06-22 12:42:49"
-    },
-    {
-      "id": 2,
-      "ledger_date": "2026-06-22",
-      "route_id": 1,
-      "route_name": "总部1号线",
-      "factory_id": 1,
-      "factory_name": "总部厂区",
-      "schedule_id": 20,
-      "vehicle_id": 1,
-      "capacity": 45,
-      "reservation_count": 0,
-      "check_in_count": 0,
-      "occupancy_rate": 0,
-      "created_at": "2026-06-22 12:42:49"
-    },
-    {
-      "id": 3,
-      "ledger_date": "2026-06-22",
-      "route_id": 2,
-      "route_name": "总部2号线",
-      "factory_id": 1,
-      "factory_name": "总部厂区",
-      "schedule_id": 21,
-      "vehicle_id": 1,
-      "capacity": 45,
-      "reservation_count": 0,
-      "check_in_count": 0,
-      "occupancy_rate": 0,
-      "created_at": "2026-06-22 12:42:49"
+      "created_at": "2026-06-22 15:41:05",
+      "cancel_time": "2026-06-22 15:41:05"
     },
     {
       "id": 4,
-      "ledger_date": "2026-06-22",
-      "route_id": 2,
-      "route_name": "总部2号线",
-      "factory_id": 1,
-      "factory_name": "总部厂区",
-      "schedule_id": 22,
-      "vehicle_id": 1,
-      "capacity": 45,
-      "reservation_count": 0,
-      "check_in_count": 0,
-      "occupancy_rate": 0,
-      "created_at": "2026-06-22 12:42:49"
+      "schedule_id": 111,
+      "employee_id": 20,
+      "employee_no": "EMP0020",
+      "employee_name": "员工20",
+      "route_name": "生产1号线",
+      "schedule_date": "2026-06-29",
+      "departure_time": "07:00",
+      "start_point": "宋家庄地铁站",
+      "end_point": "生产厂区",
+      "status": 0,
+      "created_at": "2026-06-22 15:42:28",
+      "cancel_time": "2026-06-22 15:42:28"
     },
     {
       "id": 5,
-      "ledger_date": "2026-06-22",
-      "route_id": 3,
-      "route_name": "开发1号线",
-      "factory_id": 2,
-      "factory_name": "开发厂区",
-      "schedule_id": 23,
-      "vehicle_id": 2,
-      "capacity": 35,
-      "reservation_count": 0,
-      "check_in_count": 0,
-      "occupancy_rate": 0,
-      "created_at": "2026-06-22 12:42:49"
+      "schedule_id": 111,
+      "employee_id": 20,
+      "employee_no": "EMP0020",
+      "employee_name": "员工20",
+      "route_name": "生产1号线",
+      "schedule_date": "2026-06-29",
+      "departure_time": "07:00",
+      "start_point": "宋家庄地铁站",
+      "end_point": "生产厂区",
+      "status": 0,
+      "created_at": "2026-06-22 15:43:38",
+      "cancel_time": "2026-06-22 15:43:38"
     },
     {
       "id": 6,
-      "ledger_date": "2026-06-22",
-      "route_id": 3,
-      "route_name": "开发1号线",
-      "factory_id": 2,
-      "factory_name": "开发厂区",
-      "schedule_id": 24,
-      "vehicle_id": 2,
-      "capacity": 35,
-      "reservation_count": 0,
-      "check_in_count": 0,
-      "occupancy_rate": 0,
-      "created_at": "2026-06-22 12:42:49"
+      "schedule_id": 111,
+      "employee_id": 20,
+      "employee_no": "EMP0020",
+      "employee_name": "员工20",
+      "route_name": "生产1号线",
+      "schedule_date": "2026-06-29",
+      "departure_time": "07:00",
+      "start_point": "宋家庄地铁站",
+      "end_point": "生产厂区",
+      "status": 1,
+      "created_at": "2026-06-22 15:43:38"
     },
     {
       "id": 7,
-      "ledger_date": "2026-06-22",
-      "route_id": 4,
-      "route_name": "开发2号线",
-      "factory_id": 2,
-      "factory_name": "开发厂区",
-      "schedule_id": 25,
-      "vehicle_id": 2,
-      "capacity": 35,
-      "reservation_count": 0,
-      "check_in_count": 0,
-      "occupancy_rate": 0,
-      "created_at": "2026-06-22 12:42:49"
-    },
-    {
-      "id": 8,
-      "ledger_date": "2026-06-22",
-      "route_id": 4,
-      "route_name": "开发2号线",
-      "factory_id": 2,
-      "factory_name": "开发厂区",
-      "schedule_id": 26,
-      "vehicle_id": 2,
-      "capacity": 35,
-      "reservation_count": 0,
-      "check_in_count": 0,
-      "occupancy_rate": 0,
-      "created_at": "2026-06-22 12:42:49"
-    },
-    {
-      "id": 9,
-      "ledger_date": "2026-06-22",
-      "route_id": 5,
+      "schedule_id": 111,
+      "employee_id": 19,
+      "employee_no": "EMP0019",
+      "employee_name": "员工19",
       "route_name": "生产1号线",
-      "factory_id": 3,
-      "factory_name": "生产厂区",
-      "schedule_id": 27,
-      "vehicle_id": 3,
-      "capacity": 50,
-      "reservation_count": 0,
-      "check_in_count": 0,
-      "occupancy_rate": 0,
-      "created_at": "2026-06-22 12:42:49"
-    },
-    {
-      "id": 10,
-      "ledger_date": "2026-06-22",
-      "route_id": 5,
-      "route_name": "生产1号线",
-      "factory_id": 3,
-      "factory_name": "生产厂区",
-      "schedule_id": 28,
-      "vehicle_id": 3,
-      "capacity": 50,
-      "reservation_count": 0,
-      "check_in_count": 0,
-      "occupancy_rate": 0,
-      "created_at": "2026-06-22 12:42:49"
-    },
-    {
-      "id": 11,
-      "ledger_date": "2026-06-22",
-      "route_id": 6,
-      "route_name": "生产2号线",
-      "factory_id": 3,
-      "factory_name": "生产厂区",
-      "schedule_id": 29,
-      "vehicle_id": 4,
-      "capacity": 40,
-      "reservation_count": 0,
-      "check_in_count": 0,
-      "occupancy_rate": 0,
-      "created_at": "2026-06-22 12:42:49"
-    },
-    {
-      "id": 12,
-      "ledger_date": "2026-06-22",
-      "route_id": 6,
-      "route_name": "生产2号线",
-      "factory_id": 3,
-      "factory_name": "生产厂区",
-      "schedule_id": 30,
-      "vehicle_id": 4,
-      "capacity": 40,
-      "reservation_count": 0,
-      "check_in_count": 0,
-      "occupancy_rate": 0,
-      "created_at": "2026-06-22 12:42:49"
-    },
-    {
-      "id": 13,
-      "ledger_date": "2026-06-21",
-      "route_id": 1,
-      "route_name": "总部1号线",
-      "factory_id": 1,
-      "factory_name": "总部厂区",
-      "schedule_id": 13,
-      "vehicle_id": 1,
-      "capacity": 45,
-      "reservation_count": 29,
-      "check_in_count": 26,
-      "occupancy_rate": 65.57,
-      "created_at": "2026-06-22 12:42:49"
-    },
-    {
-      "id": 14,
-      "ledger_date": "2026-06-21",
-      "route_id": 2,
-      "route_name": "总部2号线",
-      "factory_id": 1,
-      "factory_name": "总部厂区",
-      "schedule_id": 14,
-      "vehicle_id": 1,
-      "capacity": 45,
-      "reservation_count": 18,
-      "check_in_count": 15,
-      "occupancy_rate": 41.55,
-      "created_at": "2026-06-22 12:42:49"
-    },
-    {
-      "id": 15,
-      "ledger_date": "2026-06-21",
-      "route_id": 3,
-      "route_name": "开发1号线",
-      "factory_id": 2,
-      "factory_name": "开发厂区",
-      "schedule_id": 15,
-      "vehicle_id": 2,
-      "capacity": 35,
-      "reservation_count": 23,
-      "check_in_count": 20,
-      "occupancy_rate": 66.97,
-      "created_at": "2026-06-22 12:42:49"
-    },
-    {
-      "id": 16,
-      "ledger_date": "2026-06-21",
-      "route_id": 4,
-      "route_name": "开发2号线",
-      "factory_id": 2,
-      "factory_name": "开发厂区",
-      "schedule_id": 16,
-      "vehicle_id": 2,
-      "capacity": 35,
-      "reservation_count": 27,
-      "check_in_count": 26,
-      "occupancy_rate": 77.81,
-      "created_at": "2026-06-22 12:42:49"
-    },
-    {
-      "id": 17,
-      "ledger_date": "2026-06-21",
-      "route_id": 5,
-      "route_name": "生产1号线",
-      "factory_id": 3,
-      "factory_name": "生产厂区",
-      "schedule_id": 17,
-      "vehicle_id": 3,
-      "capacity": 50,
-      "reservation_count": 37,
-      "check_in_count": 29,
-      "occupancy_rate": 74.68,
-      "created_at": "2026-06-22 12:42:49"
-    },
-    {
-      "id": 18,
-      "ledger_date": "2026-06-21",
-      "route_id": 6,
-      "route_name": "生产2号线",
-      "factory_id": 3,
-      "factory_name": "生产厂区",
-      "schedule_id": 18,
-      "vehicle_id": 4,
-      "capacity": 40,
-      "reservation_count": 20,
-      "check_in_count": 16,
-      "occupancy_rate": 50.8,
-      "created_at": "2026-06-22 12:42:49"
-    },
-    {
-      "id": 19,
-      "ledger_date": "2026-06-20",
-      "route_id": 1,
-      "route_name": "总部1号线",
-      "factory_id": 1,
-      "factory_name": "总部厂区",
-      "schedule_id": 7,
-      "vehicle_id": 1,
-      "capacity": 45,
-      "reservation_count": 32,
-      "check_in_count": 27,
-      "occupancy_rate": 72.52,
-      "created_at": "2026-06-22 12:42:49"
-    },
-    {
-      "id": 20,
-      "ledger_date": "2026-06-20",
-      "route_id": 2,
-      "route_name": "总部2号线",
-      "factory_id": 1,
-      "factory_name": "总部厂区",
-      "schedule_id": 8,
-      "vehicle_id": 1,
-      "capacity": 45,
-      "reservation_count": 29,
-      "check_in_count": 25,
-      "occupancy_rate": 65.39,
-      "created_at": "2026-06-22 12:42:49"
-    },
-    {
-      "id": 21,
-      "ledger_date": "2026-06-20",
-      "route_id": 3,
-      "route_name": "开发1号线",
-      "factory_id": 2,
-      "factory_name": "开发厂区",
-      "schedule_id": 9,
-      "vehicle_id": 2,
-      "capacity": 35,
-      "reservation_count": 20,
-      "check_in_count": 19,
-      "occupancy_rate": 58.49,
-      "created_at": "2026-06-22 12:42:49"
-    },
-    {
-      "id": 22,
-      "ledger_date": "2026-06-20",
-      "route_id": 4,
-      "route_name": "开发2号线",
-      "factory_id": 2,
-      "factory_name": "开发厂区",
-      "schedule_id": 10,
-      "vehicle_id": 2,
-      "capacity": 35,
-      "reservation_count": 10,
-      "check_in_count": 9,
-      "occupancy_rate": 31.38,
-      "created_at": "2026-06-22 12:42:49"
-    },
-    {
-      "id": 23,
-      "ledger_date": "2026-06-20",
-      "route_id": 5,
-      "route_name": "生产1号线",
-      "factory_id": 3,
-      "factory_name": "生产厂区",
-      "schedule_id": 11,
-      "vehicle_id": 3,
-      "capacity": 50,
-      "reservation_count": 33,
-      "check_in_count": 27,
-      "occupancy_rate": 67.88,
-      "created_at": "2026-06-22 12:42:49"
-    },
-    {
-      "id": 24,
-      "ledger_date": "2026-06-20",
-      "route_id": 6,
-      "route_name": "生产2号线",
-      "factory_id": 3,
-      "factory_name": "生产厂区",
-      "schedule_id": 12,
-      "vehicle_id": 4,
-      "capacity": 40,
-      "reservation_count": 19,
-      "check_in_count": 18,
-      "occupancy_rate": 48.74,
-      "created_at": "2026-06-22 12:42:49"
-    },
-    {
-      "id": 25,
-      "ledger_date": "2026-06-19",
-      "route_id": 1,
-      "route_name": "总部1号线",
-      "factory_id": 1,
-      "factory_name": "总部厂区",
-      "schedule_id": 1,
-      "vehicle_id": 1,
-      "capacity": 45,
-      "reservation_count": 24,
-      "check_in_count": 19,
-      "occupancy_rate": 54.53,
-      "created_at": "2026-06-22 12:42:49"
-    },
-    {
-      "id": 26,
-      "ledger_date": "2026-06-19",
-      "route_id": 2,
-      "route_name": "总部2号线",
-      "factory_id": 1,
-      "factory_name": "总部厂区",
-      "schedule_id": 2,
-      "vehicle_id": 1,
-      "capacity": 45,
-      "reservation_count": 21,
-      "check_in_count": 19,
-      "occupancy_rate": 47.34,
-      "created_at": "2026-06-22 12:42:49"
-    },
-    {
-      "id": 27,
-      "ledger_date": "2026-06-19",
-      "route_id": 3,
-      "route_name": "开发1号线",
-      "factory_id": 2,
-      "factory_name": "开发厂区",
-      "schedule_id": 3,
-      "vehicle_id": 2,
-      "capacity": 35,
-      "reservation_count": 15,
-      "check_in_count": 13,
-      "occupancy_rate": 44.21,
-      "created_at": "2026-06-22 12:42:49"
-    },
-    {
-      "id": 28,
-      "ledger_date": "2026-06-19",
-      "route_id": 4,
-      "route_name": "开发2号线",
-      "factory_id": 2,
-      "factory_name": "开发厂区",
-      "schedule_id": 4,
-      "vehicle_id": 2,
-      "capacity": 35,
-      "reservation_count": 18,
-      "check_in_count": 16,
-      "occupancy_rate": 52.74,
-      "created_at": "2026-06-22 12:42:49"
-    },
-    {
-      "id": 29,
-      "ledger_date": "2026-06-19",
-      "route_id": 5,
-      "route_name": "生产1号线",
-      "factory_id": 3,
-      "factory_name": "生产厂区",
-      "schedule_id": 5,
-      "vehicle_id": 3,
-      "capacity": 50,
-      "reservation_count": 21,
-      "check_in_count": 18,
-      "occupancy_rate": 42.34,
-      "created_at": "2026-06-22 12:42:49"
-    },
-    {
-      "id": 30,
-      "ledger_date": "2026-06-19",
-      "route_id": 6,
-      "route_name": "生产2号线",
-      "factory_id": 3,
-      "factory_name": "生产厂区",
-      "schedule_id": 6,
-      "vehicle_id": 4,
-      "capacity": 40,
-      "reservation_count": 12,
-      "check_in_count": 11,
-      "occupancy_rate": 32.26,
-      "created_at": "2026-06-22 12:42:49"
+      "schedule_date": "2026-06-29",
+      "departure_time": "07:00",
+      "start_point": "宋家庄地铁站",
+      "end_point": "生产厂区",
+      "status": 0,
+      "created_at": "2026-06-22 15:43:38",
+      "cancel_time": "2026-06-22 15:43:38"
     }
   ],
+  "daily_ledgers": [],
   "capacity_alerts": [],
   "system_configs": [
     {
       "id": 1,
       "config_key": "cancel_before_minutes",
-      "config_value": "COALESCE(?",
-      "description": "COALESCE(?",
-      "updated_at": "2026-06-22 12:42:49"
+      "config_value": "30",
+      "description": "测试描述-API更新",
+      "updated_at": "2026-06-22 15:43:38"
     },
     {
       "id": 2,
       "config_key": "occupancy_threshold",
-      "config_value": "60",
-      "description": "上座率告警阈值(%)",
-      "updated_at": "2026-06-22 12:38:13"
+      "config_value": "75",
+      "description": "只改描述不改值",
+      "updated_at": "2026-06-22 15:43:38"
     },
     {
       "id": 3,
       "config_key": "alert_days",
       "config_value": "7",
       "description": "连续多少天低于阈值触发告警",
-      "updated_at": "2026-06-22 12:38:13"
+      "updated_at": "2026-06-22 15:39:15"
     }
   ],
   "_counters": {
     "factories": 3,
     "routes": 6,
     "vehicles": 4,
-    "schedules": 114,
+    "schedules": 115,
     "employees": 20,
-    "reservations": 150,
-    "daily_ledgers": 30,
+    "reservations": 7,
+    "daily_ledgers": 0,
     "capacity_alerts": 0,
     "system_configs": 3
   }
